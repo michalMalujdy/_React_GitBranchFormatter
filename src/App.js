@@ -55,7 +55,12 @@ class App extends React.Component {
     }
     
     format = () => {
-        const formattedTaskTitle = this.state.taskTitle.toLowerCase().replaceAll(" ", "-");
+        const formattedTaskTitle = this.state.taskTitle
+            .toLowerCase()
+            .replaceAll(" ", "-")
+            .replaceAll("\"", "")
+            .replaceAll("'", "");
+        
         let result = `${this.state.taskType}/${this.state.taskId}_${formattedTaskTitle}`;
         
         this.setState({formattingResult: result});
