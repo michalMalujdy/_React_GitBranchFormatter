@@ -1,10 +1,15 @@
 import React from "react";
 import './App.css';
-import Formatter from "./components/Formatter";
+import Formatter from "./components/Formatter/Formatter";
+import CustomLayout from "./components/CustomLayout/CustomLayout";
 
 class App extends React.Component {
     render() {
-        return <Formatter/>;
+        return (
+            <CustomLayout>
+                <Formatter/>
+            </CustomLayout>
+        );
     }
 }
 

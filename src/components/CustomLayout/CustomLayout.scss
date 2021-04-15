@@ -1,0 +1,11 @@
+﻿.custom-layout {
+  min-height: 100vh;
+  
+  &_name-header {
+    color: white;
+  }
+  
+  &_content {
+    padding: 3rem 0.5rem;
+  }
+}
