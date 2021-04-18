@@ -25,8 +25,8 @@ class Formatter extends React.Component {
                         remember: true,
                     }}
                 >
-                    <Form.Item label="Task type" name="layout">
-                        <Radio.Group>
+                    <Form.Item label="Task type" >
+                        <Radio.Group defaultValue="feature" >
                             <Radio.Button value="feature" onChange={this.onTaskTypeChange}>Feature</Radio.Button>
                             <Radio.Button value="bugfix" onChange={this.onTaskTypeChange}>Bug</Radio.Button>
                         </Radio.Group>
