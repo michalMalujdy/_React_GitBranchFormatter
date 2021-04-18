@@ -1,8 +1,11 @@
 ﻿import React from "react";
-import { Form, Input, Button, Radio, Card, message } from 'antd';
+import {Form, Input, Button, Radio, Card, message} from 'antd';
+import BranchNameFormatter from "../../domain/branchNameFormatter";
 import "./Formatter.scss";
 
 class Formatter extends React.Component {
+    branchNameFormatter = new BranchNameFormatter();
+    
     constructor(props) {
         super(props);
         
@@ -25,19 +28,19 @@ class Formatter extends React.Component {
                         remember: true,
                     }}
                 >
-                    <Form.Item label="Task type" >
-                        <Radio.Group defaultValue="feature" >
-                            <Radio.Button value="feature" onChange={this.onTaskTypeChange}>Feature</Radio.Button>
-                            <Radio.Button value="bugfix" onChange={this.onTaskTypeChange}>Bug</Radio.Button>
-                        </Radio.Group>
-                    </Form.Item>
-
                     <Form.Item label="Task ID" name="taskId" >
                         <Input value={this.state.taskId} onChange={this.onTaskIdChange}/>
                     </Form.Item>
 
                     <Form.Item label="Task title" name="taskTitle">
                         <Input value={this.state.taskTitle} onChange={this.onTaskTitleChange}/>
+                    </Form.Item>
+
+                    <Form.Item label="Task type" >
+                        <Radio.Group defaultValue="feature" >
+                            <Radio.Button value="feature" onChange={this.onTaskTypeChange}>Feature</Radio.Button>
+                            <Radio.Button value="bugfix" onChange={this.onTaskTypeChange}>Bug</Radio.Button>
+                        </Radio.Group>
                     </Form.Item>
 
                     <Form.Item>
@@ -66,18 +69,13 @@ class Formatter extends React.Component {
     }
 
     onFormatClick = () => {
-        this.format();
-    }
-
-    format = () => {
-        const formattedTaskTitle = this.state.taskTitle
-            .toLowerCase()
-            .replaceAll(" ", "-")
-            .replaceAll("\"", "")
-            .replaceAll("'", "");
-
-        let result = `${this.state.taskType}/${this.state.taskId}_${formattedTaskTitle}`;
-        this.setState({formattingResult: result});
+        const formattedBranchName = this.branchNameFormatter.getFormattedBranchName(
+            this.state.taskId,
+            this.state.taskTitle,
+            this.state.taskType
+        )
+        
+        this.setState({formattingResult: formattedBranchName});
     }
     
     onCopyClick = (event) => {
