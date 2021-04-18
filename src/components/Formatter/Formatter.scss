@@ -1,12 +1,4 @@
 ﻿.formatter {
   display: flex;
   justify-content: center;
-  
-  &_form {
-    width: 600px;
-    
-    @media(max-width: 600px) {
-      width: 100%;
-    }
-  }
 }

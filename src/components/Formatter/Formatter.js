@@ -1,7 +1,8 @@
 ﻿import React from "react";
-import {Form, Input, Button, Radio, Card, message} from 'antd';
-import BranchNameFormatter from "../../domain/branchNameFormatter";
+import {Card, message} from 'antd';
 import "./Formatter.scss";
+import FormatterForm from "./FormatterForm/FormatterForm";
+import BranchNameFormatter from "../../domain/branchNameFormatter";
 
 class Formatter extends React.Component {
     branchNameFormatter = new BranchNameFormatter();
@@ -10,9 +11,6 @@ class Formatter extends React.Component {
         super(props);
         
         this.state = {
-            taskId: "",
-            taskType: "feature",
-            taskTitle: "",
             formattingResult: ""
         };
     }
@@ -20,61 +18,28 @@ class Formatter extends React.Component {
     render() {
         return (
             <div className="formatter">
-
-                <Form
-                    className="formatter_form"
-                    name="basic"
-                    initialValues={{
-                        remember: true,
-                    }}
-                >
-                    <Form.Item label="Task ID" name="taskId" >
-                        <Input value={this.state.taskId} onChange={this.onTaskIdChange}/>
-                    </Form.Item>
-
-                    <Form.Item label="Task title" name="taskTitle">
-                        <Input value={this.state.taskTitle} onChange={this.onTaskTitleChange}/>
-                    </Form.Item>
-
-                    <Form.Item label="Task type" >
-                        <Radio.Group defaultValue="feature" >
-                            <Radio.Button value="feature" onChange={this.onTaskTypeChange}>Feature</Radio.Button>
-                            <Radio.Button value="bugfix" onChange={this.onTaskTypeChange}>Bug</Radio.Button>
-                        </Radio.Group>
-                    </Form.Item>
-
-                    <Form.Item>
-                        <Button type="primary" htmlType="submit" onClick={this.onFormatClick}>
-                            Format
-                        </Button>
-                    </Form.Item>
-                    <Card title="Branch name" extra={<a href="#" onClick={this.onCopyClick}>Copy</a>}>
+                <div>
+                    <FormatterForm onSubmit={this.onFormSubmit}/>
+                    
+                    <Card title="Branch name" extra={this.renderCopyToClipboard()}>
                         {this.state.formattingResult}
                     </Card>
-                </Form>                
+                </div>     
             </div>
         )
     }
 
-    onTaskTypeChange = (event) => {
-        this.setState({taskType: event.target.value});
+    renderCopyToClipboard = () => {
+        return <a href="#" onClick={this.onCopyClick}>Copy</a>;
     }
-
-    onTaskIdChange = (event) => {
-        this.setState({taskId: event.target.value});
-    }
-
-    onTaskTitleChange = (event) => {
-        this.setState({taskTitle: event.target.value});
-    }
-
-    onFormatClick = () => {
+    
+    onFormSubmit = (form) => {
         const formattedBranchName = this.branchNameFormatter.getFormattedBranchName(
-            this.state.taskId,
-            this.state.taskTitle,
-            this.state.taskType
-        )
-        
+            form.taskId,
+            form.taskTitle,
+            form.taskType
+        );
+
         this.setState({formattingResult: formattedBranchName});
     }
     
