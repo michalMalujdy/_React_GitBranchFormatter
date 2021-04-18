@@ -1,14 +1,14 @@
 import React from "react";
 import './App.css';
 import Formatter from "./components/Formatter/Formatter";
-import CustomLayout from "./components/CustomLayout/CustomLayout";
+import AppLayout from "./components/AppLayout/AppLayout";
 
 class App extends React.Component {
     render() {
         return (
-            <CustomLayout>
+            <AppLayout>
                 <Formatter/>
-            </CustomLayout>
+            </AppLayout>
         );
     }
 }

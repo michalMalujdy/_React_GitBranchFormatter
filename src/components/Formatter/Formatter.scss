@@ -1,7 +1,4 @@
 ﻿.formatter {
-  margin-left: 100px;
-  
-  &_form {
-    max-width: 800px;
-  }
+  display: flex;
+  justify-content: center;
 }

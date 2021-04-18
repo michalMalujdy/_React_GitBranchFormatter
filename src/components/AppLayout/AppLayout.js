@@ -1,6 +1,6 @@
 ﻿import React from "react";
 import {Layout} from 'antd';
-import "./CustomLayout.scss";
+import "./AppLayout.scss";
 
 const { Header, Content, Footer } = Layout;
 
