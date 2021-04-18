@@ -1,5 +1,5 @@
 ﻿import React from "react";
-import { Form, Input, Button, Radio, Card } from 'antd';
+import { Form, Input, Button, Radio, Card, message } from 'antd';
 import "./Formatter.scss";
 
 class Formatter extends React.Component {
@@ -45,7 +45,7 @@ class Formatter extends React.Component {
                             Format
                         </Button>
                     </Form.Item>
-                    <Card title="Branch name" extra={<a href="#">Copy</a>}>
+                    <Card title="Branch name" extra={<a href="#" onClick={this.onCopyClick}>Copy</a>}>
                         {this.state.formattingResult}
                     </Card>
                 </Form>                
@@ -77,9 +77,13 @@ class Formatter extends React.Component {
             .replaceAll("'", "");
 
         let result = `${this.state.taskType}/${this.state.taskId}_${formattedTaskTitle}`;
-
-        console.log(result);
         this.setState({formattingResult: result});
+    }
+    
+    onCopyClick = async (event) => {
+        event.preventDefault();        
+        await navigator.clipboard.writeText(this.state.formattingResult);
+        message.success("Branch name copied to the clipboard");
     }
 }
 
