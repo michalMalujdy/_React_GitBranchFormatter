@@ -80,10 +80,12 @@ class Formatter extends React.Component {
         this.setState({formattingResult: result});
     }
     
-    onCopyClick = async (event) => {
-        event.preventDefault();        
-        await navigator.clipboard.writeText(this.state.formattingResult);
-        message.success("Branch name copied to the clipboard");
+    onCopyClick = (event) => {
+        event.preventDefault();
+        
+        navigator.clipboard.writeText(this.state.formattingResult)
+            .then(() => message.success("Branch name copied to the clipboard"))
+            .catch(() => message.error("There was an error while copying"));
     }
 }
 
