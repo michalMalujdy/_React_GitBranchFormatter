@@ -17,40 +17,38 @@ class Formatter extends React.Component {
     render() {
         return (
             <div className="formatter">
-                <div>
-                    <Form
-                        className="formatter_form"
-                        name="basic"
-                        initialValues={{
-                            remember: true,
-                        }}
-                    >
-                        <Form.Item label="Task type" name="layout">
-                            <Radio.Group>
-                                <Radio.Button value="feature" onChange={this.onTaskTypeChange}>Feature</Radio.Button>
-                                <Radio.Button value="bugfix" onChange={this.onTaskTypeChange}>Bug</Radio.Button>
-                            </Radio.Group>
-                        </Form.Item>
 
-                        <Form.Item label="Task ID" name="taskId" >
-                            <Input value={this.state.taskId} onChange={this.onTaskIdChange}/>
-                        </Form.Item>
+                <Form
+                    className="formatter_form"
+                    name="basic"
+                    initialValues={{
+                        remember: true,
+                    }}
+                >
+                    <Form.Item label="Task type" name="layout">
+                        <Radio.Group>
+                            <Radio.Button value="feature" onChange={this.onTaskTypeChange}>Feature</Radio.Button>
+                            <Radio.Button value="bugfix" onChange={this.onTaskTypeChange}>Bug</Radio.Button>
+                        </Radio.Group>
+                    </Form.Item>
 
-                        <Form.Item label="Task title" name="taskTitle">
-                            <Input value={this.state.taskTitle} onChange={this.onTaskTitleChange}/>
-                        </Form.Item>
+                    <Form.Item label="Task ID" name="taskId" >
+                        <Input value={this.state.taskId} onChange={this.onTaskIdChange}/>
+                    </Form.Item>
 
-                        <Form.Item>
-                            <Button type="primary" htmlType="submit" onClick={this.onFormatClick}>
-                                Format
-                            </Button>
-                        </Form.Item>
-                        <Card title="Branch name" extra={<a href="#">Copy</a>}>
-                            {this.state.formattingResult}
-                        </Card>
-                    </Form>
-                </div>
-                
+                    <Form.Item label="Task title" name="taskTitle">
+                        <Input value={this.state.taskTitle} onChange={this.onTaskTitleChange}/>
+                    </Form.Item>
+
+                    <Form.Item>
+                        <Button type="primary" htmlType="submit" onClick={this.onFormatClick}>
+                            Format
+                        </Button>
+                    </Form.Item>
+                    <Card title="Branch name" extra={<a href="#">Copy</a>}>
+                        {this.state.formattingResult}
+                    </Card>
+                </Form>                
             </div>
         )
     }
