@@ -1,10 +1,16 @@
-﻿.formatter {
+﻿@import "../App/App";
+
+.formatter {
   display: flex;
   justify-content: center;
   
   &_content {
-    @media(max-width: 600px) {
+    @media(max-width: $mobileBreakpoint) {
       width: 100%;
+    }
+    
+    & > .ant-card {
+      margin-top: 3rem;
     }
   }
 }

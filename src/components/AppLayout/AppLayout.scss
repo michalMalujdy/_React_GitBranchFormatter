@@ -1,4 +1,6 @@
-﻿.custom-layout {
+﻿@import "../App/App";
+
+.custom-layout {
   min-height: 100vh;
   
   &_name-header {
@@ -8,7 +10,7 @@
   &_content {
     padding: 3rem 5rem;
     
-    @media(max-width: 600px) {
+    @media(max-width: $mobileBreakpoint) {
       padding: 3rem 0.5rem;
     }
   }

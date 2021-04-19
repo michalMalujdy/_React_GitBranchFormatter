@@ -1,7 +1,9 @@
-﻿.formatter-form {
+﻿@import "../../App/App";
+
+.formatter-form {
   width: 600px;
 
-  @media(max-width: 600px) {
+  @media(max-width: $mobileBreakpoint) {
     width: 100%;
   }  
 }
