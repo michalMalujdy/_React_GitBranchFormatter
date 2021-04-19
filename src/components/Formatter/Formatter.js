@@ -18,7 +18,7 @@ class Formatter extends React.Component {
     render() {
         return (
             <div className="formatter">
-                <div>
+                <div className="formatter_content">
                     <FormatterForm onSubmit={this.onFormSubmit}/>
                     
                     <Card title="Branch name" extra={this.renderCopyToClipboard()}>
