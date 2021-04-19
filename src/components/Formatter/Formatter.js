@@ -3,6 +3,7 @@ import {Card, message} from 'antd';
 import "./Formatter.scss";
 import FormatterForm from "./FormatterForm/FormatterForm";
 import BranchNameFormatter from "../../domain/branchNameFormatter";
+import OutputCard from "./OutputCard/OutputCard";
 
 class Formatter extends React.Component {
     branchNameFormatter = new BranchNameFormatter();
@@ -20,17 +21,11 @@ class Formatter extends React.Component {
             <div className="formatter">
                 <div className="formatter_content">
                     <FormatterForm onSubmit={this.onFormSubmit}/>
-                    
-                    <Card title="Branch name" extra={this.renderCopyToClipboard()}>
-                        {this.state.formattingResult}
-                    </Card>
+                    <OutputCard title="Branch name" content={this.state.formattingResult}/>
+                    <OutputCard title="Git command" content={this.getGitCommand()}/>
                 </div>     
             </div>
         )
-    }
-
-    renderCopyToClipboard = () => {
-        return <a href="#" onClick={this.onCopyClick}>Copy</a>;
     }
     
     onFormSubmit = (form) => {
@@ -43,12 +38,12 @@ class Formatter extends React.Component {
         this.setState({formattingResult: formattedBranchName});
     }
     
-    onCopyClick = (event) => {
-        event.preventDefault();
+    getGitCommand = () => {
+        if (!this.state.formattingResult) {
+            return "";
+        }
         
-        navigator.clipboard.writeText(this.state.formattingResult)
-            .then(() => message.success("Branch name copied to the clipboard"))
-            .catch(() => message.error("There was an error while copying"));
+        return `git branch -b "${this.state.formattingResult}"`;
     }
 }
 
