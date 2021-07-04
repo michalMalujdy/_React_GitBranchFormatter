@@ -43,7 +43,7 @@ class Formatter extends React.Component {
             return "";
         }
         
-        return `git branch -b "${this.state.formattingResult}"`;
+        return `git checkout -b "${this.state.formattingResult}"`;
     }
 }
 
