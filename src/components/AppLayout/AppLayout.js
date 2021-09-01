@@ -14,7 +14,7 @@ class CustomLayout extends React.Component {
                 <Content className="custom-layout_content">
                     {this.props.children}
                 </Content>
-                <Footer style={{ textAlign: 'center' }}>Git branch formatter - 2018 - Created by Michal Malujdy</Footer>
+                <Footer style={{ textAlign: 'center' }}>Git branch formatter - 2021 - Created by Michal Malujdy</Footer>
             </Layout>
         );
     }
